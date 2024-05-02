@@ -73,3 +73,7 @@ crashlytics-build.properties
 /Assets/Imports
 /Assets/google-services.json
 /Assets/Plugins
+/Assets/Editor
+/Assets/StreamingAssets/google-services-desktop.json
+/Assets/TextMesh Pro
+/Assets/UI Toolkit
