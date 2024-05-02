@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class LogInButton : MonoBehaviour
 {
     [SerializeField]
-    private InputField emailInputField;
+    private TMP_InputField emailInputField;
 
     [SerializeField]
-    private InputField passInputField;
+    private TMP_InputField passInputField;
 
     public void Login()
     {
@@ -19,9 +19,14 @@ public class LogInButton : MonoBehaviour
 
         FirebaseManager.Auth.SignInWithEmailAndPasswordAsync(id, pass).ContinueWithOnMainThread(task =>
         {
-            if (task.IsCanceled || task.IsFaulted)
+            if (task.IsCanceled)
             {
-                Debug.Log("Sign in task failed");
+                Debug.Log("Sign in was canceled");
+                return;
+            }
+            if(task.IsFaulted)
+            {
+                Debug.LogError($"Sign in encountered an error: {task.Exception}");
                 return;
             }
 
