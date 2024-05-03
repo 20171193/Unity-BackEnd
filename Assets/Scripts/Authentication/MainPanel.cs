@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainPanel : MonoBehaviour
@@ -18,6 +19,7 @@ public class MainPanel : MonoBehaviour
     {
         logoutButton.onClick.AddListener(Logout);
         editButton.onClick.AddListener(Edit);
+        startButton.onClick.AddListener(GameStart);
     }
 
     private void OnEnable()
@@ -39,5 +41,10 @@ public class MainPanel : MonoBehaviour
     private void Edit()
     {
         panelController.SetActivePanel(PanelController.Panel.Edit);
+    }
+
+    private void GameStart()
+    {
+        SceneManager.LoadScene("DatabaseScene");
     }
 }
