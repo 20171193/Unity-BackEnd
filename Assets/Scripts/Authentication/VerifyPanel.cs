@@ -14,6 +14,8 @@ public class VerifyPanel : MonoBehaviour
 
     [SerializeField] int sendMailCooltime;
 
+    private Coroutine verifyCheckRoutine;
+
     private void Awake()
     {
         logoutButton.onClick.AddListener(Logout);

@@ -12,6 +12,7 @@ public class MainPanel : MonoBehaviour
 
     [SerializeField] Button logoutButton;
     [SerializeField] Button editButton;
+    [SerializeField] Button startButton;
 
     private void Awake()
     {
@@ -19,13 +20,24 @@ public class MainPanel : MonoBehaviour
         editButton.onClick.AddListener(Edit);
     }
 
+    private void OnEnable()
+    {
+        if (FirebaseManager.Auth == null)
+            return;
+
+        nameText.text = FirebaseManager.Auth.CurrentUser.DisplayName;
+        emailText.text = FirebaseManager.Auth.CurrentUser.Email;
+        idText.text = FirebaseManager.Auth.CurrentUser.UserId;
+    }
+
     private void Logout()
     {
-        
+        FirebaseManager.Auth.SignOut();
+        panelController.SetActivePanel(PanelController.Panel.Login);
     }
 
     private void Edit()
     {
-        
+        panelController.SetActivePanel(PanelController.Panel.Edit);
     }
 }

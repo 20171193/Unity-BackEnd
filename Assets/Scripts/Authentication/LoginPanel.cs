@@ -53,9 +53,7 @@ public class LoginPanel : MonoBehaviour
                 return;
             }
 
-            Firebase.Auth.AuthResult result = task.Result;
-            Debug.Log($"User signed in successfully: {result.User.DisplayName} ({result.User.UserId})");
-            if (result.User.IsEmailVerified)
+            if (FirebaseManager.Auth.CurrentUser.IsEmailVerified)
             {
                 panelController.SetActivePanel(PanelController.Panel.Main);
             }
